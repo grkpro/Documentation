@@ -1,0 +1,444 @@
+openapi: 3.1.0
+info:
+  title: IBBEvent
+  version: '1.0'
+  summary: Installed Base Bus
+  description: ''
+servers:
+  - description: dev
+    url: 'https://api.dev.dice-tools.com/ibb_v1'
+paths:
+  /event:
+    post:
+      summary: Install Base Bus
+      operationId: INTERNAL_INVENTORY_NEW
+      responses:
+        '200':
+          description: OK
+      description: INTERNAL_INVENTORY_NEW
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                eventDate:
+                  type: string
+                  minLength: 1
+                sourceSystem:
+                  type: string
+                  minLength: 1
+                inventoryType:
+                  type: string
+                  minLength: 1
+                model:
+                  type: string
+                  minLength: 1
+                family:
+                  type: string
+                  minLength: 1
+                partNumber:
+                  type: string
+                  minLength: 1
+                modelYear:
+                  type: number
+                shipToParty:
+                  type: object
+                  properties:
+                    passportId:
+                      type: string
+                      minLength: 1
+                    address:
+                      type: object
+                      properties:
+                        mdmId:
+                          type: string
+                        nameLine1:
+                          type: string
+                          minLength: 1
+                        addressLine1:
+                          type: string
+                          minLength: 1
+                        addressLine2:
+                          type: string
+                        city:
+                          type: string
+                          minLength: 1
+                        state:
+                          type: string
+                          minLength: 1
+                        postalCode:
+                          type: string
+                          minLength: 1
+                        country:
+                          type: string
+                          minLength: 1
+                      required:
+                        - mdmId
+                        - nameLine1
+                        - addressLine1
+                        - addressLine2
+                        - city
+                        - state
+                        - postalCode
+                        - country
+                  required:
+                    - passportId
+                    - address
+                consignmentParty:
+                  type: object
+                  properties:
+                    passportId:
+                      type: string
+                      minLength: 1
+                    address:
+                      type: object
+                      properties:
+                        mdmId:
+                          type: string
+                        nameLine1:
+                          type: string
+                          minLength: 1
+                        addressLine1:
+                          type: string
+                          minLength: 1
+                        addressLine2:
+                          type: string
+                        city:
+                          type: string
+                          minLength: 1
+                        state:
+                          type: string
+                          minLength: 1
+                        postalCode:
+                          type: string
+                          minLength: 1
+                        country:
+                          type: string
+                          minLength: 1
+                      required:
+                        - mdmId
+                        - nameLine1
+                        - addressLine1
+                        - addressLine2
+                        - city
+                        - state
+                        - postalCode
+                        - country
+                  required:
+                    - passportId
+                    - address
+                servicingDealerId:
+                  type: string
+                  minLength: 1
+                salesOrderNumber:
+                  type: string
+                  minLength: 1
+                salesOrderDate:
+                  type: string
+                  minLength: 1
+                salesOrderLineId:
+                  type: string
+                  minLength: 1
+                shipmentDate:
+                  type: string
+                  minLength: 1
+                buildDate:
+                  type: string
+                  minLength: 1
+                manufacturingPlantId:
+                  type: string
+                  minLength: 1
+                shipFromLocation:
+                  type: string
+                  minLength: 1
+                components:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - componentName
+                      - partNumber
+                      - serialNumber
+                    properties:
+                      componentName:
+                        type: string
+                        minLength: 1
+                      partNumber:
+                        type: string
+                        minLength: 1
+                      serialNumber:
+                        type: string
+                        minLength: 1
+                options:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - optionGroupCode
+                      - optionValueCode
+                    properties:
+                      optionGroupCode:
+                        type: string
+                        minLength: 1
+                      optionValueCode:
+                        type: string
+                        minLength: 1
+                eventType:
+                  type: string
+                  minLength: 1
+                id:
+                  type: string
+                  minLength: 1
+                manufacturer:
+                  type: string
+                  minLength: 1
+                serialNumber:
+                  type: string
+                  minLength: 1
+                businessUnit:
+                  type: string
+                  minLength: 1
+              required:
+                - eventDate
+                - sourceSystem
+                - inventoryType
+                - model
+                - family
+                - partNumber
+                - modelYear
+                - shipToParty
+                - consignmentParty
+                - servicingDealerId
+                - salesOrderNumber
+                - salesOrderDate
+                - salesOrderLineId
+                - shipmentDate
+                - buildDate
+                - manufacturingPlantId
+                - shipFromLocation
+                - components
+                - options
+                - eventType
+                - id
+                - manufacturer
+                - serialNumber
+                - businessUnit
+              x-examples:
+                example-1:
+                  eventDate: '2020-05-15T01:23:05.905Z'
+                  sourceSystem: TWMS_IRW
+                  inventoryType: CONSIGNMENT
+                  model: L23
+                  family: SMALL ARTICULATED LOADER
+                  partNumber: M1401
+                  modelYear: 2020
+                  shipToParty:
+                    passportId: '6657'
+                    address:
+                      mdmId: ''
+                      nameLine1: JASON BUCHHOLZ EQUIPMENT LOGISTICS GROUP-65581
+                      addressLine1: 250 EAST BEATON DRIVE
+                      addressLine2: ''
+                      city: WEST FARGO
+                      state: ND
+                      postalCode: '58078'
+                      country: US
+                  consignmentParty:
+                    passportId: '6657'
+                    address:
+                      mdmId: ''
+                      nameLine1: JASON BUCHHOLZ EQUIPMENT LOGISTICS GROUP-65581
+                      addressLine1: 250 EAST BEATON DRIVE
+                      addressLine2: ''
+                      city: WEST FARGO
+                      state: ND
+                      postalCode: '58078'
+                      country: US
+                  servicingDealerId: '6657'
+                  salesOrderNumber: '3769751'
+                  salesOrderDate: '1990-01-01'
+                  salesOrderLineId: '58583851'
+                  shipmentDate: '2020-05-14'
+                  buildDate: '2020-05-04'
+                  manufacturingPlantId: '106'
+                  shipFromLocation: US
+                  components:
+                    - componentName: ENGINE_SERIAL
+                      partNumber: ENGINE_SERIAL
+                      serialNumber: 1J991410001KV2244
+                    - componentName: LEFT_MOTOR_SERIAL
+                      partNumber: LEFT_MOTOR_SERIAL
+                      serialNumber: N1X4416169009
+                    - componentName: RIGHT_MOTOR_SERIAL
+                      partNumber: RIGHT_MOTOR_SERIAL
+                      serialNumber: N1X4416169020
+                  options:
+                    - optionGroupCode: M1401-A01-C02
+                      optionValueCode: Engine Block Heater
+                    - optionGroupCode: M1401-R02-C02
+                      optionValueCode: Cab Enclosure Heat
+                    - optionGroupCode: M1401-R06-C02
+                      optionValueCode: Power Bob-Tach
+                    - optionGroupCode: M1401-R09-C06
+                      optionValueCode: WTA 23X8.50-12 TRACTOR
+                    - optionGroupCode: M1401-R10-C03
+                      optionValueCode: SEAT HEATED SUSPENSION
+                    - optionGroupCode: M1401-R26-C02
+                      optionValueCode: Radio Yes
+                    - optionGroupCode: M1401-R60-C02
+                      optionValueCode: Traction Assist
+                    - optionGroupCode: M1401-R61-C01
+                      optionValueCode: Sediment Bowl No
+                  eventType: INTERNAL_INVENTORY_NEW
+                  id: '1589505785905'
+                  manufacturer: BOBCAT
+                  serialNumber: B4LC11001
+                  businessUnit: NAO
+            examples:
+              INVENTORY_NEW:
+                $ref: '#/components/examples/Inventory_New'
+              INVENTORY_NEW_1:
+                $ref: '#/components/examples/Inventory_new_1'
+        description: ''
+    parameters: []
+components:
+  schemas:
+    RequestSchem:
+      title: RequestSchem
+      type: object
+      properties:
+        id:
+          type: string
+  examples:
+    Inventory_New:
+      value:
+        eventDate: '2020-05-15T01:23:05.905Z'
+        sourceSystem: TWMS_IRW
+        inventoryType: CONSIGNMENT
+        model: L23
+        family: SMALL ARTICULATED LOADER
+        partNumber: M1401
+        modelYear: 2020
+        shipToParty:
+          passportId: '6657'
+          address:
+            mdmId: ''
+            nameLine1: JASON BUCHHOLZ EQUIPMENT LOGISTICS GROUP-65581
+            addressLine1: 250 EAST BEATON DRIVE
+            addressLine2: ''
+            city: WEST FARGO
+            state: ND
+            postalCode: '58078'
+            country: US
+        consignmentParty:
+          passportId: '6657'
+          address:
+            mdmId: ''
+            nameLine1: JASON BUCHHOLZ EQUIPMENT LOGISTICS GROUP-65581
+            addressLine1: 250 EAST BEATON DRIVE
+            addressLine2: ''
+            city: WEST FARGO
+            state: ND
+            postalCode: '58078'
+            country: US
+        servicingDealerId: '6657'
+        salesOrderNumber: '3769751'
+        salesOrderDate: '1990-01-01'
+        salesOrderLineId: '58583851'
+        shipmentDate: '2020-05-14'
+        buildDate: '2020-05-04'
+        manufacturingPlantId: '106'
+        shipFromLocation: US
+        components:
+          - componentName: ENGINE_SERIAL
+            partNumber: ENGINE_SERIAL
+            serialNumber: 1J991410001KV2244
+          - componentName: LEFT_MOTOR_SERIAL
+            partNumber: LEFT_MOTOR_SERIAL
+            serialNumber: N1X4416169009
+          - componentName: RIGHT_MOTOR_SERIAL
+            partNumber: RIGHT_MOTOR_SERIAL
+            serialNumber: N1X4416169020
+        options:
+          - optionGroupCode: M1401-A01-C02
+            optionValueCode: Engine Block Heater
+          - optionGroupCode: M1401-R02-C02
+            optionValueCode: Cab Enclosure Heat
+          - optionGroupCode: M1401-R06-C02
+            optionValueCode: Power Bob-Tach
+          - optionGroupCode: M1401-R09-C06
+            optionValueCode: WTA 23X8.50-12 TRACTOR
+          - optionGroupCode: M1401-R10-C03
+            optionValueCode: SEAT HEATED SUSPENSION
+          - optionGroupCode: M1401-R26-C02
+            optionValueCode: Radio Yes
+          - optionGroupCode: M1401-R60-C02
+            optionValueCode: Traction Assist
+          - optionGroupCode: M1401-R61-C01
+            optionValueCode: Sediment Bowl No
+        eventType: INTERNAL_INVENTORY_NEW
+        id: '1589505785905'
+        manufacturer: BOBCAT
+        serialNumber: B4LC11001
+        businessUnit: NAO
+    Inventory_new_1:
+      value:
+        eventDate: '2020-05-18T09:50:08.789Z'
+        sourceSystem: TWMS_IRW
+        inventoryType: DEALER
+        model: DX170LC-5
+        family: CRAWLER EXCAVATOR
+        partNumber: DX170LC-5-NK02
+        shipToParty:
+          passportId: '76617'
+          address:
+            mdmId: ''
+            nameLine1: KEEN TRANSPORT-1061197
+            addressLine1: 101 NORWEST COURT
+            addressLine2: ''
+            city: Savannah
+            state: GA
+            postalCode: '31408'
+            country: US
+        consignmentParty:
+          passportId: '112'
+          address:
+            mdmId: ''
+            nameLine1: Doosan Heavy (Internal)-4700
+            addressLine1: ''
+            addressLine2: ''
+            city: ''
+            state: ''
+            postalCode: ''
+            country: US
+        servicingDealerId: '76617'
+        salesOrderNumber: '0201891006'
+        salesOrderDate: '1990-01-01'
+        shipmentDate: '2019-11-18'
+        buildDate: '2020-03-01'
+        manufacturingPlantId: 4710/0AE1/KR
+        shipFromLocation: US
+        components:
+          - componentName: Main Pump NO.(主泵)
+            partNumber: Main Pump NO.(主泵)
+            serialNumber: '990117'
+          - componentName: Main Frame Oil Tank
+            partNumber: Main Frame Oil Tank
+            serialNumber: MJ191007V18
+          - componentName: Track Frame Side Frame Right
+            partNumber: Track Frame Side Frame Right
+            serialNumber: WK19J487
+        options:
+          - optionGroupCode: '001'
+            optionValueCode: 2.5m+BRK+NoPER+NoCLA+QUC
+          - optionGroupCode: WTL
+            optionValueCode: WEIGHT LIMIT MAIN FRAME
+        eventType: INTERNAL_INVENTORY_NEW
+        id: '1589795408789'
+        manufacturer: DOOSAN
+        serialNumber: DHKCEBBTLK0001504
+        businessUnit: NAO
